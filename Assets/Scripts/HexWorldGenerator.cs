@@ -5,15 +5,17 @@ public class HexWorldGenerator : MonoBehaviour
     public int size = 20;
     public float gridSize = 1f;
 
-    [SerializeField] GameObject hexPrefab, hexWaterPrefab;
+    [SerializeField] GameObject hexPrefab, hexWaterPrefab,hexGrassPrefab;
     [SerializeField] GameObject[] hexTreesPrefab;
-    [SerializeField] Transform waterGridParent, treeGridParent, landGridParent;
+    [SerializeField] Transform waterGridParent, treeGridParent, landGridParent, grassGridPareent;
 
     public float seed = 0;
     public float waterNoiseFrequency = 5f;
     public float waterNoiseThreshold = 0.35f;
     public float treeDensity = 0.2f;
     public float treeNoiseFrequency = 8f;
+    public float grassDensity = 0.2f;
+    public float grassNoiseFrequency = 8f;
 
     HexCell[,] grids;
 
@@ -21,7 +23,8 @@ public class HexWorldGenerator : MonoBehaviour
     {
         Land,
         Tree,
-        Water
+        Water,
+        Grass
     }
 
     void Awake()
@@ -52,6 +55,9 @@ public class HexWorldGenerator : MonoBehaviour
                         prefab = hexTreesPrefab[Random.Range(0, hexTreesPrefab.Length)];
                         break;
 
+                    case GridType.Grass:
+                        prefab=hexGrassPrefab;
+                        break;
                     default:
                         prefab = hexPrefab;
                         break;
@@ -73,8 +79,14 @@ public class HexWorldGenerator : MonoBehaviour
                     cell.isWater = true;
                     grid.transform.SetParent(waterGridParent);
                 }
+                else if (type == GridType.Grass)
+                {
+                    cell.isGrass = true;
+                    grid.transform.SetParent(grassGridPareent);
+                }
                 else
                 {
+                    cell.isLand = true;
                     grid.transform.SetParent(landGridParent);
                 }
 
@@ -148,17 +160,28 @@ public class HexWorldGenerator : MonoBehaviour
             (z + seed) / waterNoiseFrequency
         );
 
-        if (waterValue < waterNoiseThreshold)
-            return GridType.Water;
+       
 
         float treeValue = Mathf.PerlinNoise(
             (x + seed + 100) / treeNoiseFrequency,
             (z + seed + 100) / treeNoiseFrequency
         );
 
+        float grassValue = Mathf.PerlinNoise(
+            (x + seed + 200) / grassNoiseFrequency,
+            (z + seed + 200) / grassNoiseFrequency
+         );
+        if (waterValue < waterNoiseThreshold)
+            return GridType.Water;
+
         if (treeValue < treeDensity)
         {
             return GridType.Tree;
+        }
+
+        if (grassValue < grassDensity)
+        {
+            return GridType.Grass;
         }
             
 
