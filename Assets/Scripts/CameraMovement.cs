@@ -12,7 +12,6 @@ public class CameraMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            Debug.Log("Moving"+transform.position.x);
             transform.position += Vector3.forward * cameraSpeed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.A))

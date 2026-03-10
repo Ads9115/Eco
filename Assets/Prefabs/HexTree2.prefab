@@ -169,15 +169,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5f7c55d86c14a254b9aaa54c205048fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 226.39946
+      value: 72.299835
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f7c55d86c14a254b9aaa54c205048fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -642.0464
+      value: -10.003489
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f7c55d86c14a254b9aaa54c205048fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.94397
+      value: 206.36984
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f7c55d86c14a254b9aaa54c205048fc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -207,6 +207,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5f7c55d86c14a254b9aaa54c205048fc, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 53af4b3a5423da2428c30bec6d51616b, type: 2}
     - target: {fileID: 919132149155446097, guid: 5f7c55d86c14a254b9aaa54c205048fc, type: 3}
       propertyPath: m_Name
       value: HexTree2
