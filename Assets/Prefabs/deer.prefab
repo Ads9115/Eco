@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12
+      value: 36.00025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 322.45474
+      value: 302.604
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -77,6 +77,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6453274586603571680}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2404641496141002060}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6978996396934981888}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1329517800807090598}
   m_SourcePrefab: {fileID: 100100000, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
 --- !u!1 &8343142850734932395 stripped
 GameObject:
@@ -95,13 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a285f6e5853002046bba3be756b17c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Agent
-  world: {fileID: 0}
-  moveSpeed: 7
-  turnSpeed: 10
-  waitTime: 4
-  wanderRadius: 8
-  x: 0
-  z: 0
 --- !u!54 &4187605514536893693
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,3 +152,55 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.63978195, y: 1.1244135, z: 0.8536606}
   m_Center: {x: -0.022512436, y: 0.58001757, z: -0.07316971}
+--- !u!114 &2404641496141002060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343142850734932395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbde115fc6d35c54a8b129f5b49b5bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalsStats
+  world: {fileID: 0}
+  hunger: 100
+  x: 0
+  z: 0
+  homeX: 0
+  homeZ: 0
+  moveSpeed: 3
+  turnSpeed: 10
+  waitTime: 1.5
+  wanderRadius: 4
+  isEating: 0
+--- !u!114 &6978996396934981888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343142850734932395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58a919778c21b645a0fe79be62e4120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HerbivoreAi
+--- !u!114 &1329517800807090598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343142850734932395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68b7ff0b48f2944a92ddc2b3cb84e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HerbivoreActions
+  x: 0
+  z: 0
+  waitTimer: 1
+  world: {fileID: 0}
+  currentState: 0
