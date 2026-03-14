@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.93
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.28
+      value: 3.7342
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 82.405975
+      value: 322.45474
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48,9 +48,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
       propertyPath: m_Name
       value: deer
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: 7aa674d8e8b42e248acaeb71242a576e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

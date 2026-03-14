@@ -36,8 +36,13 @@ public class Agent : MonoBehaviour
             homeX = start.x;
             homeZ = start.z;
 
-            ChooseNewDestination();
+            ChooseWanderDestination();
         }
+    }
+
+    private void MyBrain_OnAnimalHungry(object sender, System.EventArgs e)
+    {
+        
     }
 
     void Update()
@@ -49,7 +54,7 @@ public class Agent : MonoBehaviour
             if (waitTimer <= 0f)
             {
                 isWaiting = false;
-                ChooseNewDestination();
+                ChooseWanderDestination();
             }
             return;
         }
@@ -136,7 +141,7 @@ public class Agent : MonoBehaviour
         return closest;
     }
 
-    void ChooseNewDestination()
+    void ChooseWanderDestination()
     {
         HexCell start = world.GetCell(x, z);
 
@@ -162,6 +167,7 @@ public class Agent : MonoBehaviour
 
         StartWaiting(0.5f);
     }
+
 
     List<HexCell> AStar(HexCell start, HexCell goal)
     {
