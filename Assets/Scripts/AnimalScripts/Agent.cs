@@ -37,6 +37,8 @@ public class Agent : MonoBehaviour
                 if (n == null || n.isWater || n.isTree || closed.Contains(n))
                     continue;
 
+                
+
                 float tentativeGScore = gScore[current] + 1;
 
                 if (!gScore.ContainsKey(n) || tentativeGScore < gScore[n])

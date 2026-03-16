@@ -169,15 +169,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 239cfc5ad4723404abe248f3f233e8e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.39835
+      value: 30.7975
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 239cfc5ad4723404abe248f3f233e8e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.03934
+      value: 7.25636
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 239cfc5ad4723404abe248f3f233e8e1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 84.35151
+      value: 274.38464
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 239cfc5ad4723404abe248f3f233e8e1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -257,7 +257,7 @@ MonoBehaviour:
   grassAmount: 10
   maxGrass: 100
   gettingEaten: 0
-  grassRegenerationTime: 3
+  grassRegenerationTime: 10
   amountPerTick: 10
   hexRenderer: {fileID: 0}
   targetMaterialIndex: 2

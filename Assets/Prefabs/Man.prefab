@@ -436,13 +436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a285f6e5853002046bba3be756b17c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HumanAI
-  world: {fileID: 0}
-  moveSpeed: 3
-  turnSpeed: 10
-  waitTime: 1.5
-  wanderRadius: 4
-  x: 0
-  z: 0
 --- !u!1 &8242307392776749027
 GameObject:
   m_ObjectHideFlags: 0

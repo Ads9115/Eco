@@ -4,11 +4,12 @@ public class AnimalSpawner : MonoBehaviour
 {
 
     [SerializeField] HexWorldGenerator world;
-    [SerializeField] GameObject man,deer;
+    [SerializeField] GameObject man,deer,tiger;
     [SerializeField] float deerThreshold=0.2f,deerFrequency=10f;
-    [SerializeField] float manThreshold=0.3f,ManFrequency=10f;
+    [SerializeField] float manThreshold=0.3f,ManFrequency=10f; 
+    [SerializeField] float tigerThreshold = 0.3f, tigerFrequency = 10f;
     [SerializeField] float seed;
-    [SerializeField] Transform manHolder, deerHolder;
+    [SerializeField] Transform manHolder, deerHolder,tigerHolder;
     private void Start()
     {
         spawnAnimals();
@@ -28,6 +29,7 @@ public class AnimalSpawner : MonoBehaviour
 
                 float manValue = Mathf.PerlinNoise((x + seed) / ManFrequency, (z + seed) / ManFrequency);
                 float deerValue = Mathf.PerlinNoise((x + seed+1000) / deerFrequency, (z + seed+1000) / deerFrequency);
+                float tigerValue= Mathf.PerlinNoise((x + seed + 2000) / tigerFrequency, (z + seed + 2000) / tigerFrequency);
 
                 if (manValue < manThreshold)
                 {
@@ -38,6 +40,36 @@ public class AnimalSpawner : MonoBehaviour
                 {
                     GameObject entity= SpawnEntity(deer, cell);
                     entity.transform.SetParent(deerHolder);
+                    HerbivoreStats stats = entity.GetComponent<HerbivoreStats>();
+                    HerbivoreActions actions = entity.GetComponent<HerbivoreActions>();
+                    if (stats != null)
+                    {
+                        stats.world = this.world;
+
+                    }
+                    if (actions != null)
+                    {
+                        actions.world = this.world;
+
+                    }
+                }
+                else if (tigerValue < tigerThreshold)
+                {
+                    GameObject entity = SpawnEntity(tiger, cell);
+                    entity.transform.SetParent(tigerHolder);
+
+                    CarnivoreStats stats = entity.GetComponent<CarnivoreStats>();
+                    CarnivoreActions actions = entity.GetComponent<CarnivoreActions>();
+                    if (stats != null)
+                    {
+                        stats.world = this.world;
+
+                    }
+                    if (actions != null)
+                    {
+                        actions.world = this.world;
+
+                    }
                 }
             }
         }
@@ -47,19 +79,6 @@ public class AnimalSpawner : MonoBehaviour
     private GameObject SpawnEntity(GameObject prefab,HexCell cell)
     {
         GameObject entity = Instantiate(prefab, new Vector3 (cell.transform.position.x,8.1f,cell.transform.position.z), Quaternion.identity);
-
-        AnimalsStats stats = entity.GetComponent<AnimalsStats>();
-        HerbivoreActions actions=entity.GetComponent<HerbivoreActions>();
-        if (stats != null)
-        {
-            stats.world = this.world;
-
-        }
-        if (actions != null)
-        {
-            actions.world = this.world;
-
-        }
         return entity;
     }
 }
