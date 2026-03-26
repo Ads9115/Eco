@@ -8,8 +8,8 @@ public class GrassManager : MonoBehaviour
     public bool gettingEaten = false;
 
     [Header("Growth Settings")]
-    [SerializeField] private float grassRegenerationTime = 3f;
-    [SerializeField] private float amountPerTick = 10f;
+    [SerializeField] private float grassRegenerationTime = 10f;
+    [SerializeField] private float amountPerTick = 5f;
 
     [Header("Visuals")]
     [SerializeField] private MeshRenderer hexRenderer;

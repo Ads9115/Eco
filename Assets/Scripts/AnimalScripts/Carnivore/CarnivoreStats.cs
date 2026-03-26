@@ -3,7 +3,20 @@ using UnityEngine.LightTransport;
 
 public class CarnivoreStats : MonoBehaviour
 {
-    [Header("Eating Settings")][SerializeField] private float timer = 0f, hungerSpeed = 3f, hungerAmount = 5f;
+    [Header("Life Settings")]
+    public char gender = 'M';
+    [SerializeField] float adultTime;
+    [SerializeField] float deathTime;
+    public float lifeTimer;
+    public enum lifeStage
+    {
+        minor,
+        adult,
+        oldage
+    }
+    public lifeStage currentLifeStage = lifeStage.adult;
+
+    [Header("Eating Settings")][SerializeField] private float timer = 0f, hungerSpeed = 4f, hungerAmount = 8f;
     public HexWorldGenerator world;
 
     [Range(0f, 100f)] public float hunger = 100, life = 100f;
@@ -34,6 +47,17 @@ public class CarnivoreStats : MonoBehaviour
 
     private void Start()
     {
+        deathTime = Random.Range(25*60, 30*60);
+        adultTime = Random.Range(6*60,8*60);
+        int genderChooser = Random.Range(0, 2);
+        if (genderChooser == 1)
+        {
+            gender = 'F';
+        }
+        else
+        {
+            gender = 'M';
+        }
         hunger = Random.Range(0, 60);
 
         HexCell start = FindClosestCell();
@@ -49,6 +73,15 @@ public class CarnivoreStats : MonoBehaviour
     }
     private void Update()
     {
+        if (currentLifeStage == lifeStage.adult)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else
+        {
+            transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+        }
+
         if (!isEating)
         {
             Hunger();
@@ -57,6 +90,17 @@ public class CarnivoreStats : MonoBehaviour
         {
             isEating = false;
         }
+        lifeTimer += Time.deltaTime;
+        if (lifeTimer > adultTime)
+        {
+            currentLifeStage = lifeStage.adult;
+        }
+        if (lifeTimer > deathTime)
+        {
+            Debug.Log("Life End");
+            life = 0;
+        }
+
     }
 
     private void Hunger()

@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class HerbivoreAi : MonoBehaviour
 {
+    AnimalCount animalCount;
+
     private Agent agent;
     private HerbivoreStats stats;
     private HerbivoreActions actions;
@@ -9,6 +12,7 @@ public class HerbivoreAi : MonoBehaviour
 
     private void Start()
     {
+        animalCount = FindAnyObjectByType<AnimalCount>();
         actions = GetComponent<HerbivoreActions>();
         agent = GetComponent<Agent>();
         stats = GetComponent<HerbivoreStats>();
@@ -18,7 +22,13 @@ public class HerbivoreAi : MonoBehaviour
     {
 
         if (stats.life <= 0)
+        {
+
             Destroy(gameObject);
+            Debug.Log("Deer Died");
+            animalCount.deerCount--;
+        }
+
         // No tiger check needed here anymore — collider handles it
 
         if (actions.currentState == HerbivoreActions.HerbivoreStates.Escape)
@@ -38,6 +48,7 @@ public class HerbivoreAi : MonoBehaviour
             actions.currentState = HerbivoreActions.HerbivoreStates.Wander;
             stats.isEating = false;
         }
+
 
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AnimalSpawner : MonoBehaviour
 {
-
+    AnimalCount animalCount;
     [SerializeField] HexWorldGenerator world;
     [SerializeField] GameObject man,deer,tiger;
     [SerializeField] float deerThreshold=0.2f,deerFrequency=10f;
@@ -10,9 +10,12 @@ public class AnimalSpawner : MonoBehaviour
     [SerializeField] float tigerThreshold = 0.3f, tigerFrequency = 10f;
     [SerializeField] float seed;
     [SerializeField] Transform manHolder, deerHolder,tigerHolder;
+
     private void Start()
     {
+        animalCount = FindAnyObjectByType<AnimalCount>();
         spawnAnimals();
+        
     }
 
     private void spawnAnimals()
@@ -39,13 +42,14 @@ public class AnimalSpawner : MonoBehaviour
                 else if (deerValue < deerThreshold)
                 {
                     GameObject entity= SpawnEntity(deer, cell);
+                    animalCount.deerCount++;
                     entity.transform.SetParent(deerHolder);
                     HerbivoreStats stats = entity.GetComponent<HerbivoreStats>();
                     HerbivoreActions actions = entity.GetComponent<HerbivoreActions>();
                     if (stats != null)
                     {
                         stats.world = this.world;
-
+                        stats.lifeTimer = Random.Range(0f, 1000f);
                     }
                     if (actions != null)
                     {
@@ -56,6 +60,7 @@ public class AnimalSpawner : MonoBehaviour
                 else if (tigerValue < tigerThreshold)
                 {
                     GameObject entity = SpawnEntity(tiger, cell);
+                    animalCount.tigerCount++;
                     entity.transform.SetParent(tigerHolder);
 
                     CarnivoreStats stats = entity.GetComponent<CarnivoreStats>();
@@ -63,7 +68,7 @@ public class AnimalSpawner : MonoBehaviour
                     if (stats != null)
                     {
                         stats.world = this.world;
-
+                        stats.lifeTimer = Random.Range(0f, 1000f);
                     }
                     if (actions != null)
                     {
@@ -76,7 +81,7 @@ public class AnimalSpawner : MonoBehaviour
     }
 
 
-    private GameObject SpawnEntity(GameObject prefab,HexCell cell)
+    public GameObject SpawnEntity(GameObject prefab,HexCell cell)
     {
         GameObject entity = Instantiate(prefab, new Vector3 (cell.transform.position.x,8.1f,cell.transform.position.z), Quaternion.identity);
         return entity;

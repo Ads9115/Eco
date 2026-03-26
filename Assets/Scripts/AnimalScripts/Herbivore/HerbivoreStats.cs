@@ -3,9 +3,28 @@ using UnityEngine.LightTransport;
 
 public class HerbivoreStats : MonoBehaviour
 {
-    [Header("Eating Settings")][SerializeField]private float timer = 0f, hungerSpeed = 3f, hungerAmount = 5f;
+    [Header("Life Settings")]
+    public char gender='M';
+    [SerializeField]float adultTime;
+    [SerializeField]float deathTime;
+    public float lifeTimer;
+    public enum lifeStage
+    {
+        minor,
+        adult,
+        oldage
+    }
+    public lifeStage currentLifeStage = lifeStage.adult;
+
+
+
+    [Header("Eating Settings")]
+    [SerializeField]private float hungerTickTimer = 0f, hungerTickInterval = 5f, hungerTickAmount = 5f;
     public HexWorldGenerator world;
 
+
+  
+    
     [Range(0f,100f)]public float hunger = 100,life=100f;
 
     public int x;
@@ -30,7 +49,18 @@ public class HerbivoreStats : MonoBehaviour
 
     private void Start()
     {
-        moveSpeed = walkSpeed;
+        deathTime= Random.Range(1800,1900);
+        adultTime = Random.Range(300, 350);
+        int genderChooser = Random.Range(0, 2);
+        if (genderChooser == 1)
+        {
+            gender = 'F';
+        }
+        else
+        {
+            gender = 'M';
+        }
+            moveSpeed = walkSpeed;
         hunger = Random.Range(0, 60);
 
         HexCell start = FindClosestCell();
@@ -46,6 +76,14 @@ public class HerbivoreStats : MonoBehaviour
     }
     private void Update()
     {
+        if(currentLifeStage==lifeStage.adult)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else
+        {
+            transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+        }
         if (!isEating)
         {
             Hunger();
@@ -54,24 +92,36 @@ public class HerbivoreStats : MonoBehaviour
         {
             isEating = false;
         }
+
+        lifeTimer += Time.deltaTime;
+
+        if (lifeTimer > adultTime)
+        {
+            currentLifeStage = lifeStage.adult;
+        }
+        if (lifeTimer > deathTime)
+        {
+            life = 0;
+        }
+        
     }
 
     private void Hunger()
     {
       
-        timer += Time.deltaTime;
-        if (timer > hungerSpeed&&hunger<100)
+        hungerTickTimer += Time.deltaTime;
+        if (hungerTickTimer > hungerTickInterval&&hunger<100)
         {
-            hunger+=hungerAmount;  
-            timer = 0f;
+            hunger+=hungerTickAmount;  
+            hungerTickTimer = 0f;
         }
         
         else if (hunger >= 100)
         {
-            if (timer > hungerDamageInterval)
+            if (hungerTickTimer > hungerDamageInterval)
             {
                 life-=hungerDamageAmount;
-                timer = 0f;
+                hungerTickTimer = 0f;
             }
             
         }
@@ -102,7 +152,7 @@ public class HerbivoreStats : MonoBehaviour
         return closestTiger;
     }
 
-    HexCell FindClosestCell()
+    public HexCell FindClosestCell()
     {
         HexCell closest = null;
         float best = Mathf.Infinity;

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CarnivoreAi : MonoBehaviour
 {
+    AnimalCount animalCount;
     private Agent agent;
     private CarnivoreStats stats;
     private CarnivoreActions actions;
@@ -9,6 +10,7 @@ public class CarnivoreAi : MonoBehaviour
 
     private void Start()
     {
+        animalCount = FindAnyObjectByType<AnimalCount>();
         actions = GetComponent<CarnivoreActions>();
         agent = GetComponent<Agent>();
         stats = GetComponent<CarnivoreStats>();
@@ -38,6 +40,8 @@ public class CarnivoreAi : MonoBehaviour
         if (stats.life <= 0)
         {
             Destroy(gameObject);
+            animalCount.tigerCount--;
+            Debug.Log("Tiger Died");
         }
     }
 }

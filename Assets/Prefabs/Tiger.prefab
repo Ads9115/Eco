@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6739238185038825595}
-  - component: {fileID: 8969010683969367885}
   - component: {fileID: 7264743406474903787}
   - component: {fileID: 8453740018077092273}
+  - component: {fileID: 8969010683969367885}
   - component: {fileID: 472588800720882060}
-  - component: {fileID: 4826255878573296779}
   - component: {fileID: 3846502603916906136}
+  - component: {fileID: 4826255878573296779}
+  - component: {fileID: 2827248894320959095}
   - component: {fileID: 7147806091026811480}
   m_Layer: 7
   m_Name: Tiger
@@ -33,24 +34,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.37883, y: 4.03232, z: 0.41896}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8703141812754267218}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8969010683969367885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8933904734455416326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a285f6e5853002046bba3be756b17c28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Agent
 --- !u!65 &7264743406474903787
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99,6 +88,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8969010683969367885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933904734455416326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a285f6e5853002046bba3be756b17c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Agent
 --- !u!114 &472588800720882060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +112,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0889f56f183e2034eaafe0b74da3768e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarnivoreStats
+  gender: 77
+  adultTime: 0
+  deathTime: 0
+  lifeTimer: 0
+  currentLifeStage: 1
   timer: 0
   hungerSpeed: 3
   hungerAmount: 5
@@ -131,6 +137,18 @@ MonoBehaviour:
   hungerDamageAmount: 5
   hungerDamageInterval: 15
   isEating: 0
+--- !u!114 &3846502603916906136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933904734455416326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df143541535126c4cabf8c2f06d17a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarnivoreAi
 --- !u!114 &4826255878573296779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +166,7 @@ MonoBehaviour:
   waitTimer: 1
   world: {fileID: 0}
   currentState: 0
---- !u!114 &3846502603916906136
+--- !u!114 &2827248894320959095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,9 +175,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8933904734455416326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df143541535126c4cabf8c2f06d17a7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 826c07d08e22e38488d95d553a95f7cc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CarnivoreAi
+  m_EditorClassIdentifier: Assembly-CSharp::CarnivoreReproduction
+  tiger: {fileID: 8933904734455416326}
+  reproductionTime: 0
+  reproductionTimer: 0
 --- !u!95 &7147806091026811480
 Animator:
   serializedVersion: 7
